@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -10,6 +10,14 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_modules|vue\/src/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+         }
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
